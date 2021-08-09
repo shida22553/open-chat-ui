@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<meta charset="UTF-8" />
+<title>Open chat</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+<!-- CSS Reset -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+<!-- Milligram CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<body>
+  <div id="app">
+    <div id="main">
+      <header>
+        <select id="room-select">
+          <option value="1">{{ room.name }}</option>
+          <option value="2">{{ room.name }}</option>
+          <option value="3">{{ room.name }}</option>
+          <option value="4">{{ room.name }}</option>
+        </select>
+      </header>
+      <div id="messages">
+        <p>{{message.content}}({{message.user_name}})</p>
+        <p>{{message.content}}({{message.user_name}})</p>
+      </div>
+    </div>
+    <div id="form" class="clearfix">
+      <div id="form-left" class="float-left">
+        <input type="text" id="name-input" placeholder="Your name">
+        <input type="text" id="message-input" placeholder="Type a message">
+      </div>
+      <div class="float-right">
+        <a id="message-send-button" class="button float-right" href="#">Send</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+header {
+  height: 50px;
+  padding: 10px 2.0rem;
+}
+
+h1 {
+  display: inline;
+  margin-bottom: 0px;
+}
+
+#main {
+  padding-bottom: 60px;
+}
+
+#name-input {
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+#message-input {
+  display: inline;
+  width: calc(100% - 120px);
+}
+
+#message-send-button {
+  display: inline;
+  margin-left : 10px;
+  width: 100px;
+}
+
+#messages {
+  padding: 10px 2.0rem;
+  height: calc(100vh - 130px);
+  /* background-color: gray; */
+  overflow-y: scroll;
+}
+
+#form {
+  margin-top: 10px;
+  height: 60px;
+  padding: 0px 2.0rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+#form-left {
+  width: calc(100% - 110px);
+}
