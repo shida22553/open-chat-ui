@@ -17,31 +17,41 @@
 
 <body>
   <div id="app">
-    <div id="main">
-      <header class="clearfix">
-        <div class="float-left">
-          <select v-model="selectedRoomId" id="room-select">
-            <option v-for="room in rooms" :key="room.id" :value="room.id">{{room.name}}</option>
-          </select>
-        </div>
-        <div class="float-right">
-          <input type="text" id="room-input" v-model="roomName" placeholder="Type room name">
-          <a id="room-create-button" class="button" href="#" @click="createRoom">Create</a>
-        </div>
-      </header>
-      <div id="messages">
-        <!-- <p>{{message.content}}({{message.user_name}})</p>
-        <p>{{message.content}}({{message.user_name}})</p> -->
-      </div>
+    <div id="room-form" v-show="mode === 'room-form'">
+      <input type="text" id="room-input" v-model="roomName" placeholder="Type room name"/>
+      <a id="room-create-button" class="button" href="#" @click="createRoom">Create</a>
     </div>
-    <div id="form" class="clearfix">
-      <div id="form-left" class="float-left">
-        <input type="text" id="name-input" v-model="userName" @keyup="saveUserName" placeholder="Your name">
-        <input type="text" id="message-input" placeholder="Type a message">
+    <div id="user-name-form" v-show="mode === 'user-name-form'">
+      <div>
+        <label for="name-input">Set your name</label>
+        <input type="text" id="name-input" v-model="userName" placeholder="Your name" />
       </div>
-      <div class="float-right">
-        <a id="message-send-button" class="button" href="#">Send</a>
+      <a class="button" href="#" @click="saveUserName">Save</a>
+      <a class="button button-clear" href="#" @click="mode = 'chat-form'">Back</a>
+    </div>
+    <div v-show="mode === 'chat-form'">
+      <div id="main">
+        <header>
+          <div class="clearfix">
+            <select v-model="selectedRoomId" id="room-select" class="float-left" @change="loadLastMessage">
+              <option v-for="room in rooms" :key="room.id" :value="room.id">{{room.name}}</option>
+            </select>
+            <a class="button button-outline float-right"href="#" @click="mode = 'room-form'">Create room</a>
+          </div>
+        </header>
+        <div id="messages">
+          <a href="#" @click="loadMessageBefore">Load messages</a>
+          <div v-for="message in messages" :key="message.id" :class="message.user_id == userId ? 'my-message' : ''">
+            <span class='message-content'>{{message.user_name}} > {{message.content}} ({{message.created_at}})</span>
+            <hr>
+          </div>
+        </div>
       </div>
+      <form id="form">
+        <input type='text' id="message-input" v-model="content" @keydown.enter="createMessage" placeholder="Type a message" />
+        <a id="message-send-button" class="button" href="#" @click="createMessage">Send</a>
+        <a class="button button-outline" href="#" @click="mode = 'user-name-form'">Edit user name</a>
+      </form>
     </div>
   </div>
 

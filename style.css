@@ -4,48 +4,52 @@
 }
 
 header {
-  height: 70px;
-  padding: 10px 2.0rem;
+  height: 80px;
+  padding: 20px 2.0rem 20px
 }
 
 #main {
-  padding-bottom: 60px;
+  padding-bottom: 190px;
+}
+
+#user-name-form {
+  padding: 20px;
+}
+
+#room-form {
+  padding: 20px;
 }
 
 #room-select {
   width: 150px;
+  margin-right: 10px;
 }
 
 #room-input {
-  width: 200px;
+  width: 150px;
   margin-right: 10px;
 }
 
 #name-input {
-  width: 100px;
-  margin-right: 10px;
-  margin-bottom: 0px;
 }
 
 #message-input {
-  width: calc(100% - 120px);
 }
 
 #message-send-button {
-  margin-left : 10px;
-  width: 100px;
+  margin-right: 10px;
 }
 
 #messages {
   padding: 10px 2.0rem;
-  height: calc(100vh - 140px);
-  /* background-color: gray; */
+  height: calc(100vh - 240px);
   overflow-y: scroll;
 }
 
 #form {
   margin-top: 10px;
-  height: 60px;
+  margin-bottom: 10px;
+  height: 140px;
   padding: 0px 2.0rem;
   width: 100%;
   position: absolute;
@@ -54,4 +58,12 @@ header {
 
 #form-left {
   width: calc(100% - 110px);
+}
+
+.my-message {
+  text-align: right;
+}
+
+hr {
+  margin: 5px;
 }
