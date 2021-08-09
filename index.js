@@ -58,6 +58,12 @@ new Vue({
     const element = document.getElementById('messages');
     const bottom = element.scrollHeight - element.clientHeight;
     element.scroll(0, bottom);
+
+    // set interval
+    setInterval(() => {
+      const lastMessage = self.messages[self.messages.length - 1]
+      self.loadMessageAfter(lastMessage.id)
+    }, 2000)
   },
   methods: {
     async createRoom() {
