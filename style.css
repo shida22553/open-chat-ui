@@ -4,17 +4,20 @@
 }
 
 header {
-  height: 50px;
+  height: 70px;
   padding: 10px 2.0rem;
-}
-
-h1 {
-  display: inline;
-  margin-bottom: 0px;
 }
 
 #main {
   padding-bottom: 60px;
+}
+
+#room-select {
+  width: 200px;
+}
+
+#room-input {
+  width: 200px;
 }
 
 #name-input {
@@ -36,7 +39,7 @@ h1 {
 
 #messages {
   padding: 10px 2.0rem;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 140px);
   /* background-color: gray; */
   overflow-y: scroll;
 }

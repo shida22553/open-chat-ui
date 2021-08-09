@@ -12,17 +12,24 @@
 
 <link rel="stylesheet" href="style.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <body>
   <div id="app">
     <div id="main">
-      <header>
-        <select id="room-select">
-          <option value="1">{{ room.name }}</option>
-          <option value="2">{{ room.name }}</option>
-          <option value="3">{{ room.name }}</option>
-          <option value="4">{{ room.name }}</option>
-        </select>
+      <header class="clearfix">
+        <div class="float-left">
+          <select id="room-select">
+            <option value="1">{{ room.name }}</option>
+            <option value="2">{{ room.name }}</option>
+            <option value="3">{{ room.name }}</option>
+            <option value="4">{{ room.name }}</option>
+          </select>
+        </div>
+        <div class="float-right">
+          <input type="text" id="room-input" placeholder="Type room name">
+          <a id="room-create-button" class="button" href="#">Create</a>
+        </div>
       </header>
       <div id="messages">
         <p>{{message.content}}({{message.user_name}})</p>
@@ -35,7 +42,7 @@
         <input type="text" id="message-input" placeholder="Type a message">
       </div>
       <div class="float-right">
-        <a id="message-send-button" class="button float-right" href="#">Send</a>
+        <a id="message-send-button" class="button" href="#">Send</a>
       </div>
     </div>
   </div>
