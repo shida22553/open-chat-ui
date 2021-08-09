@@ -55,9 +55,7 @@ new Vue({
 
     // load messages
     await self.loadLastMessage()
-    const element = document.getElementById('messages');
-    const bottom = element.scrollHeight - element.clientHeight;
-    element.scroll(0, bottom);
+    this.scrollToBottom()
 
     // set interval
     setInterval(() => {
@@ -79,9 +77,7 @@ new Vue({
         .catch(function (error) {
         })
       await self.loadLastMessage()
-      const element = document.getElementById('messages');
-      const bottom = element.scrollHeight - element.clientHeight;
-      element.scroll(0, bottom);
+      this.scrollToBottom()
       this.mode = 'chat-form'
     },
     saveUserName() {
@@ -108,6 +104,7 @@ new Vue({
         .then(function (response) {
           self.content = ''
           self.messages.push(response.data)
+          this.scrollToBottom()
         })
         .catch(function (error) {
         })
@@ -141,6 +138,12 @@ new Vue({
         })
         .catch(function (error) {
         })
+      this.scrollToBottom()
+    },
+    scrollToBottom() {
+      const element = document.getElementById('messages');
+      const bottom = element.scrollHeight - element.clientHeight;
+      element.scroll(0, bottom);
     }
   },
   computed: {

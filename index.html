@@ -37,10 +37,12 @@
       <div id="main">
         <header>
           <div class="clearfix">
-            <select v-model="selectedRoomId" id="room-select" class="float-left" @change="loadLastMessage">
+            <div class="float-right">
+              <a href="#" @click="mode = 'room-form'">Create room</a>
+            </div>
+            <select v-model="selectedRoomId" id="room-select" @change="loadLastMessage">
               <option v-for="room in rooms" :key="room.id" :value="room.id">{{room.name}}</option>
             </select>
-            <a class="button button-outline float-right"href="#" @click="mode = 'room-form'">Create room</a>
           </div>
         </header>
         <div id="messages">
@@ -51,11 +53,11 @@
           </div>
         </div>
       </div>
-      <form id="form">
+      <div id="form">
         <input type='text' id="message-input" v-model="content" @keydown.enter="createMessage" placeholder="Type a message" />
         <a id="message-send-button" class="button" href="#" @click="createMessage">Send</a>
-        <a class="button button-outline" href="#" @click="mode = 'user-name-form'">Edit user name</a>
-      </form>
+        <a href="#" @click="mode = 'user-name-form'">Edit user name</a>
+      </div>
     </div>
   </div>
 
