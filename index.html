@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="style.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <body>
   <div id="app">
@@ -35,7 +36,7 @@
     </div>
     <div id="form" class="clearfix">
       <div id="form-left" class="float-left">
-        <input type="text" id="name-input" placeholder="Your name">
+        <input type="text" id="name-input" v-model="userName" @keyup="saveUserName" placeholder="Your name">
         <input type="text" id="message-input" placeholder="Type a message">
       </div>
       <div class="float-right">

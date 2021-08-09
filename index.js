@@ -5,13 +5,15 @@ const instance = axios.create({
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest'
   },
-  responseType: 'json'  
+  responseType: 'json'
 })
 
 new Vue({
   el: '#app',
   data() {
     return {
+      userId: null,
+      userName: 'NONAME',
       rooms: [],
       selectedRoomId: null,
       roomName: null
@@ -19,6 +21,27 @@ new Vue({
   },
   async mounted() {
     const self = this
+
+    // user settings
+    const userId = Cookies.get('user_id')
+    if (userId != undefined && userId != null && userId !== '') {
+      self.userId = userId
+    } else {
+      await instance.get('/users/hash')
+        .then(function (response) {
+          console.log(response)
+          self.userId = response.data.hash
+          Cookies.set('user_id', response.data.hash)
+        })
+        .catch(function (error) {
+        })
+    }
+    const userName = Cookies.get('user_name')
+    if (userName != undefined && userName != null && userName !== '') {
+      self.userName = userName
+    }
+
+    // load rooms
     await instance.get('/rooms')
       .then(function (response) {
         self.rooms = response.data
@@ -41,9 +64,13 @@ new Vue({
         })
         .catch(function (error) {
         })
+    },
+    saveUserName(){
+      if (this.userName !== '') {
+        Cookies.set('user_name', this.userName)
+      }
     }
   },
   computed: {
-
   }
 })
