@@ -18,6 +18,7 @@ header {
 
 #room-input {
   width: 200px;
+  margin-right: 10px;
 }
 
 #name-input {
@@ -27,12 +28,10 @@ header {
 }
 
 #message-input {
-  display: inline;
   width: calc(100% - 120px);
 }
 
 #message-send-button {
-  display: inline;
   margin-left : 10px;
   width: 100px;
 }

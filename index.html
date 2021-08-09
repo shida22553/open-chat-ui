@@ -19,21 +19,18 @@
     <div id="main">
       <header class="clearfix">
         <div class="float-left">
-          <select id="room-select">
-            <option value="1">{{ room.name }}</option>
-            <option value="2">{{ room.name }}</option>
-            <option value="3">{{ room.name }}</option>
-            <option value="4">{{ room.name }}</option>
+          <select v-model="selectedRoomId" id="room-select">
+            <option v-for="room in rooms" :key="room.id" :value="room.id">{{room.name}}</option>
           </select>
         </div>
         <div class="float-right">
-          <input type="text" id="room-input" placeholder="Type room name">
-          <a id="room-create-button" class="button" href="#">Create</a>
+          <input type="text" id="room-input" v-model="roomName" placeholder="Type room name">
+          <a id="room-create-button" class="button" href="#" @click="createRoom">Create</a>
         </div>
       </header>
       <div id="messages">
-        <p>{{message.content}}({{message.user_name}})</p>
-        <p>{{message.content}}({{message.user_name}})</p>
+        <!-- <p>{{message.content}}({{message.user_name}})</p>
+        <p>{{message.content}}({{message.user_name}})</p> -->
       </div>
     </div>
     <div id="form" class="clearfix">
