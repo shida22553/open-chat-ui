@@ -18,12 +18,16 @@
 <body>
   <div id="app">
     <div id="room-form" v-show="mode === 'room-form'">
+      <label for="room-input">Type room name.</label>
       <input type="text" id="room-input" v-model="roomName" placeholder="Type room name"/>
-      <a id="room-create-button" class="button" href="#" @click="createRoom">Create</a>
+      <div>
+        <a id="room-create-button" class="button" href="#" @click="createRoom">Create</a>
+        <a class="button button-clear" href="#" @click="mode = 'chat-form'">Back</a>
+      </div>
     </div>
     <div id="user-name-form" v-show="mode === 'user-name-form'">
       <div>
-        <label for="name-input">Set your name</label>
+        <label for="name-input">Set your name.</label>
         <input type="text" id="name-input" v-model="userName" placeholder="Your name" />
       </div>
       <a class="button" href="#" @click="saveUserName">Save</a>
