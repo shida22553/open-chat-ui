@@ -64,3 +64,17 @@ header {
 hr {
   margin: 5px;
 }
+
+.reaction {
+  width: 15px;
+  height: 15px;
+  opacity: 0.5;
+}
+
+.reaction:hover {
+  opacity: 1.0;
+}
+
+.reaction.sent {
+  opacity: 1.0;
+}

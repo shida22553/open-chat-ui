@@ -49,6 +49,12 @@
           <a href="#" @click="loadMessageBefore">Load messages</a>
           <div v-for="message in messages" :key="message.id" :class="message.user_id == userId ? 'my-message' : ''">
             <span class='message-content'>{{message.user_name}} > {{message.content}} ({{message.created_at}})</span>
+            <span v-for="reaction in reactions" :key="reaction.id">
+              <img class="reaction" :class="isReactionSent(message, reaction) ? 'sent' : ''" :src="`reactions/${reaction.name}.png`" @click="sendReaction(message, reaction)"/>
+            </span>
+            <div v-show="message.message_reactions.length > 0">
+              <img class="reaction sent" v-for="messageReaction in message.message_reactions" :src="`reactions/${messageReaction.reaction.name}.png`"/>
+            </div>
             <hr>
           </div>
         </div>

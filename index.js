@@ -1,5 +1,6 @@
 const instance = axios.create({
-  baseURL: 'https://evening-ravine-22261.herokuapp.com/v1/',
+  // baseURL: 'https://evening-ravine-22261.herokuapp.com/v1/',
+  baseURL: 'http://0.0.0.0:3000/v1/',
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
@@ -15,6 +16,7 @@ new Vue({
       userId: null,
       userName: 'NONAME',
       rooms: [],
+      reactions: [],
       selectedRoomId: null,
       roomName: null,
       content: null,
@@ -53,6 +55,14 @@ new Vue({
       .catch(function (error) {
       })
 
+    // load reactions
+    await instance.get('/reactions')
+      .then(function (response) {
+        self.reactions = response.data
+      })
+      .catch(function (error) {
+      })
+
     // load messages
     await self.loadLastMessage()
     this.scrollToBottom()
@@ -60,7 +70,9 @@ new Vue({
     // set interval
     setInterval(() => {
       const lastMessage = self.messages[self.messages.length - 1]
-      self.loadMessageAfter(lastMessage.id)
+      if (lastMessage != null) {
+        self.loadMessageAfter(lastMessage.id)
+      }
     }, 2000)
   },
   methods: {
@@ -142,8 +154,30 @@ new Vue({
     },
     scrollToBottom() {
       const element = document.getElementById('messages');
-      const bottom = element.scrollHeight - element.clientHeight;
-      element.scroll(0, bottom);
+      const bottom = element.scrollHeight - element.clientHeight
+      element.scroll(0, bottom)
+    },
+    async sendReaction(message, reaction) {
+      const self = this
+      if (self.isReactionSent(message, reaction)) return
+      if (self.userName === '') {
+        self.userName = 'NONAME'
+      }
+      await instance.put(`/rooms/${self.selectedRoomId}/messages/${message.id}/reactions`, {
+        user_id: self.userId,
+        user_name: self.userName,
+        reaction_id: reaction.id
+      })
+        .then(function (response) {
+          message.message_reactions.push(response.data)
+        })
+        .catch(function (error) {
+        })
+    },
+    isReactionSent(message, reaction) {
+      return message.message_reactions.some((message_reaction) => {
+        return message_reaction.user_id === this.userId && message_reaction.reaction.id == reaction.id
+      })
     }
   },
   computed: {
