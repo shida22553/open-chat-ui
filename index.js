@@ -1,6 +1,6 @@
 const instance = axios.create({
-  // baseURL: 'https://evening-ravine-22261.herokuapp.com/v1/',
-  baseURL: 'http://0.0.0.0:3000/v1/',
+  baseURL: 'https://evening-ravine-22261.herokuapp.com/v1/',
+  // baseURL: 'http://0.0.0.0:3000/v1/',
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
